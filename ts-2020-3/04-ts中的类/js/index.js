@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 /********** 类的定义 ******* */
 var Person = /** @class */ (function () {
-    // 构造函数
+    // 构造函数 数
     function Person(name) {
         this.name = name;
     }
@@ -48,7 +48,7 @@ var Person1 = /** @class */ (function () {
     };
     // 方法
     Person1.prototype.run = function () {
-        console.log(this.name);
+        console.log('父类的run方法', this.name);
     };
     return Person1;
 }());
@@ -62,6 +62,9 @@ var Web = /** @class */ (function (_super) {
         // 要调用父类的构造函数
         return _super.call(this, name) || this;
     }
+    Web.prototype.run = function () {
+        console.log(this.name + "\u5728\u8FD0\u52A8-\u5B50\u7C7B");
+    };
     return Web;
 }(Person1));
 var w = new Web('王五');
@@ -94,7 +97,9 @@ var Person2 = /** @class */ (function () {
     return Person2;
 }());
 var p2 = new Person('周武');
+// 外部也可以访问 public
 console.log('外部可以访问公有的属性的', p2.name);
+// 外部无法访问protected
 // console.log('外部无法访问保护的属性的', p2.age)
 var Web1 = /** @class */ (function (_super) {
     __extends(Web1, _super);

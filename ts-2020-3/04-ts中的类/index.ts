@@ -3,7 +3,7 @@ class Person {
   // 属性 （省略了public关键词）
   name:string
 
-  // 构造函数
+  // 构造函数 数
   constructor (name:string) {
     this.name = name
   }
@@ -52,7 +52,7 @@ class Person1 {
  
    // 方法
    run():void {
-     console.log(this.name)
+     console.log('父类的run方法',this.name)
    }
 }
 
@@ -69,6 +69,10 @@ class Web extends Person1 {
   constructor(name:string) {
     // 要调用父类的构造函数
     super(name)
+  }
+
+  run():void {
+    console.log(`${this.name}在运动-子类`)
   }
 }
 
@@ -88,7 +92,7 @@ w.run()
  */
 
 class Person2 {
-  // 属性 （省略了public关键词）
+  // 属性
   public name:string
   // 保护类型
   protected age:number
@@ -117,7 +121,9 @@ class Person2 {
 }
 
 let p2 = new Person('周武')
+// 外部也可以访问 public
 console.log('外部可以访问公有的属性的', p2.name)
+// 外部无法访问protected
 // console.log('外部无法访问保护的属性的', p2.age)
 
 class Web1 extends Person2 {

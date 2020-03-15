@@ -3,10 +3,25 @@
  * 接口的作用
  * 在面向对象的变成中，接口是一种会犯的定义，它定义了行为和动作的规范，
  * 在程序设计里面，接口起到一种限制和规范的作用
- * 接口定义了某一批类所需要遵守的滚翻，接口不关心这些类的内部状态数据，也不关心这些类里方法的实现细节
+ * 接口定义了某一批类所需要遵守的滚翻，接口不关心这些类的内部状态数据
+ * 也不关心这些类里方法的实现细节
  * 它值规定这批类里面必须提供某些方法，提供这些方法的类就可以满足需求
- * tyoescript中的接口类似与java，同时还增加了更灵活的接口类型，包括属性，函数，可缩影和类等
+ * tyoescript中的接口类似与java，同时还增加了更灵活的接口类型
+ * 包括属性，函数，可缩影和类等
  */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
  * 1、属性接口
  * 2、函数类型接口
@@ -98,3 +113,31 @@ var Cat = /** @class */ (function () {
 }());
 var c = new Cat('小花');
 c.eat('老鼠');
+var Programmer = /** @class */ (function () {
+    function Programmer(name) {
+        this.name = name;
+    }
+    Programmer.prototype.coding = function (code) {
+        console.log(this.name + code);
+    };
+    return Programmer;
+}());
+// 实现接口的类还可以继承某个类
+var Web = /** @class */ (function (_super) {
+    __extends(Web, _super);
+    function Web(name) {
+        var _this = _super.call(this, name) || this;
+        _this.name = name;
+        return _this;
+    }
+    Web.prototype.eat = function () {
+        console.log(this.name + '喜欢吃馒头');
+    };
+    Web.prototype.work = function () {
+        console.log(this.name + '喜欢打代码');
+    };
+    return Web;
+}(Programmer));
+var w = new Web('小龙');
+w.work();
+w.coding('ts');

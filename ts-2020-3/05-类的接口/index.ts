@@ -2,9 +2,11 @@
  * 接口的作用
  * 在面向对象的变成中，接口是一种会犯的定义，它定义了行为和动作的规范，
  * 在程序设计里面，接口起到一种限制和规范的作用
- * 接口定义了某一批类所需要遵守的滚翻，接口不关心这些类的内部状态数据，也不关心这些类里方法的实现细节
+ * 接口定义了某一批类所需要遵守的滚翻，接口不关心这些类的内部状态数据
+ * 也不关心这些类里方法的实现细节
  * 它值规定这批类里面必须提供某些方法，提供这些方法的类就可以满足需求
- * tyoescript中的接口类似与java，同时还增加了更灵活的接口类型，包括属性，函数，可缩影和类等
+ * tyoescript中的接口类似与java，同时还增加了更灵活的接口类型
+ * 包括属性，函数，可缩影和类等
  */
 
  /**
@@ -197,3 +199,49 @@ var md5:encrypt = function(key:string, value:string) {
   let c = new Cat('小花')
 
   c.eat('老鼠')
+
+
+  /**
+   * 接口扩展 接口可以继承接口
+   */
+
+  interface Animal2 {
+    eat ():void;
+  }
+
+  interface Person extends Animal2 {
+    work():void;
+  }
+
+  class Programmer {
+    name:string;
+    constructor (name:string) {
+      this.name = name
+    }
+
+    coding (code:string) {
+      console.log(this.name + code)
+    }
+  }
+
+  // 实现接口的类还可以继承某个类
+  class Web extends Programmer implements Person {
+    name:string;
+    constructor (name:string) {
+      super(name)
+      this.name = name
+    }
+
+    eat():void {
+      console.log(this.name + '喜欢吃馒头')
+    }
+
+    work():void {
+      console.log(this.name + '喜欢打代码')
+    }
+  }
+
+let w = new Web('小龙');
+
+w.work()
+w.coding('ts')
